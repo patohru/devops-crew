@@ -19,7 +19,7 @@ Now we will test this by using [Ghost](https://ghost.org/) (It's an open-source 
 
 1. Create a new volume called `ghost-data`
 ```sh
-docker volume create ghost-data
+docker volume create ghost-vol
 ```
 2. Check if it show up
 ```sh
@@ -27,7 +27,7 @@ docker volume ls
 ```
 3. Inspect the volume to see where it is on your machine
 ```sh
-docker volume inspect ghost-data
+docker volume inspect ghost-vol
 ```
 
 After checking the volume is created, time to run Ghost in Docker
@@ -74,7 +74,7 @@ docker rm CONTAINER_ID
 1. Use `docker ps -a` to see all containers, even those that aren't running.
 2. Stop the running Ghost container
 3. Remove the ghost container.
-4. Remove the `ghost-data` volume using `docker volume rm`
+4. Remove the `ghost-vol` volume using `docker volume rm`
 5. Use the same command to run Ghost again after you checked everything is removed.
 Navigate to `http://localhost:3001/` and you should see a fresh Ghost site without our posts, but shouldn't the command give us the error?
 If you run `docker volume ls` you can see ghost-data is back even though we removed it? Turn out the `-v ghost-data:/var/lib/ghost/content` flag binds to a "ghost-data" volume if it exists, otherwise, it creates it automatically!
